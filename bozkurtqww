@@ -37,14 +37,14 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("bozkurt scr1pt", 4483362458) -- Title, Image
 
 local Button = Tab:CreateButton({
-   Name = "infinite yield",
+   Name = "Admin Hilesi",
    Callback = function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
    end,
 })
 
 local Button = Tab:CreateButton({
-   Name = "fake lag",
+   Name = "Sahte Lag",
    Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/bozkurtlagscript/refs/heads/main/bozkurtlagscr1pt"))()
       end,
