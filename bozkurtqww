@@ -49,3 +49,10 @@ local Button = Tab:CreateButton({
 loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/bozkurtlagscript/refs/heads/main/bozkurtlagscr1pt"))()
       end,
 })
+
+local Button = Tab:CreateButton({
+   Name = "korkutma scripti",
+   Callback = function()
+   loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-fe-invisible-4366"))()
+   end,
+})
