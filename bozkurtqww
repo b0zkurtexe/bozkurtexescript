@@ -56,3 +56,10 @@ local Button = Tab:CreateButton({
    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-fe-invisible-4366"))()
    end,
 })
+
+local Button = Tab:CreateButton({
+   Name = "Özel Chati Görme Script",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/Chat-log-/refs/heads/main/bozkurtqwww"))()
+   end,
+})
