@@ -1,14 +1,14 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "bozkurtqww script",
+   Name = "Bozkurtqwww Script",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "bozkurtqww",
-   LoadingSubtitle = "bozkurt script",
-   Theme = "Bloom", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+   LoadingTitle = "Bozkurt scripts",
+   LoadingSubtitle = "bozkurt tarafından kodlanmıstır",
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+   DisableRayfieldPrompts = true,
+   DisableBuildWarnings = true, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
       Enabled = true,
@@ -22,28 +22,55 @@ local Window = Rayfield:CreateWindow({
       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
    },
 
-   KeySystem = false, -- Set this to true to use our key system
+   KeySystem = true, -- Set this to true to use our key system
    KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      Title = "Bozkurt",
+      Subtitle = ".",
+      Note = "Bu script sadece dostlara verilmektedir😊", -- Use this to tell the user how to get a key
+      FileName = "key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"aya"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
-local Tab = Window:CreateTab("hileler", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Hileler", 4483362458) -- Title, Image
 
-local Slider = Tab:CreateSlider({
-   Name = "hack",
-   Range = {0, 10},
-   Increment = 0.5,
-   Suffix = "100",
-   CurrentValue = 0,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(value)
+local Button = Tab:CreateButton({
+   Name = "Admin komutları",
+   Callback = function()
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Brookhaven",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "R16 Script",
+   Callback = function()
+  loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "R6 Script",
+   Callback = function()
+  loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+   end,
+})
+
+local Input = Tab:CreateInput({
+   Name = "hitbox",
+   CurrentValue = "0",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+    Callback = function(value)
     _G.HeadSize = value
 _G.Disabled = true
  
@@ -53,7 +80,7 @@ for i,v in next, game:GetService('Players'):GetPlayers() do
 if v.Name ~= game:GetService('Players').LocalPlayer.Name then
 pcall(function()
 v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
-v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.Transparency = 0.2
 v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really red")
 v.Character.HumanoidRootPart.Material = "block"
 v.Character.HumanoidRootPart.CanCollide = true
@@ -65,23 +92,4 @@ end)
       end
 })
 
-local Button = Tab:CreateButton({
-   Name = "admin komutları",
-   Callback = function()
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-   end,
-})
 
-local Button = Tab:CreateButton({
-   Name = "sahte lag",
-   Callback = function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/bozkurtlagscript/refs/heads/main/bozkurtlagscr1pt"))()
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "görünmezlik",
-   Callback = function()
-   loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-fe-invisible-4366"))()
-   end,
-})
