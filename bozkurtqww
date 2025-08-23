@@ -1,100 +1,64 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+local GUI = Mercury:Create{
+    Name = "bozkurtqww",
+    Size = UDim2.fromOffset(600, 400),
+    Theme = Mercury.Themes.Dark,
+    Link = "https://github.com/deeeity/mercury-lib"
+}
 
-local Window = Rayfield:CreateWindow({
-   Name = "Bozkurtqwww Script",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Bozkurt scripts",
-   LoadingSubtitle = "bozkurt tarafından kodlanmıstır",
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+GUI:Notification{
+	Title = "hosgeldiniz",
+	Text = "İyi eglenceler :)",
+	Duration = 5,
+	Callback = function() end
+}
 
-   DisableRayfieldPrompts = true,
-   DisableBuildWarnings = true, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+GUI:Credit{
+	Name = "Bozkurtqww",
+	Description = "Script Sahibi.",
+}
 
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
-   },
+local Tab = GUI:Tab{
+	Name = "hileler",
+	Icon = "rbxthumb://type=Asset&id=3517717568&w=150&h=150"
+}
 
-   Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
+Tab:Button{
+    Name = "Sahte Lag",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/bozkurtlagscript/refs/heads/main/bozkurtlagscr1pt"))()
+    end
+}
 
-   KeySystem = true, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Bozkurt",
-      Subtitle = ".",
-      Note = "Bu script sadece dostlara verilmektedir😊", -- Use this to tell the user how to get a key
-      FileName = "key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"aya"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
+Tab:Button{
+    Name = "İnfinite Yield",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
+}
 
-local Tab = Window:CreateTab("Hileler", 4483362458) -- Title, Image
+Tab:Button{
+    Name = "r16 18+ script",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+    end
+}
 
-local Button = Tab:CreateButton({
-   Name = "Admin komutları",
-   Callback = function()
-  loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-   end,
-})
+Tab:Button{
+    Name = "r6 18+ script",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+    end
+}
 
-local Button = Tab:CreateButton({
-   Name = "Brookhaven",
-   Callback = function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "R16 Script",
-   Callback = function()
-  loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "R6 Script",
-   Callback = function()
-  loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
-   end,
-})
-
-local Input = Tab:CreateInput({
-   Name = "hitbox",
-   CurrentValue = "0",
-   PlaceholderText = "Input Placeholder",
-   RemoveTextAfterFocusLost = false,
-   Flag = "Input1",
-    Callback = function(value)
-    _G.HeadSize = value
-_G.Disabled = true
- 
-game:GetService('RunService').RenderStepped:connect(function()
-if _G.Disabled then
-for i,v in next, game:GetService('Players'):GetPlayers() do
-if v.Name ~= game:GetService('Players').LocalPlayer.Name then
-pcall(function()
-v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
-v.Character.HumanoidRootPart.Transparency = 0.2
-v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really red")
-v.Character.HumanoidRootPart.Material = "block"
-v.Character.HumanoidRootPart.CanCollide = true
-end)
-end
-end
-end
-end)
-      end
-})
-
-local Button = Tab:CreateButton({
-   Name = "sahte lag",
-   Callback = function()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/bozkurtlagscript/refs/heads/main/bozkurtlagscr1pt"))()
-   end,
-})
+Tab:Button{
+    Name = "fling script",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/fling/refs/heads/main/README.md"))()
+    end
+}
