@@ -92,6 +92,46 @@ local HeaderCorner = Instance.new("UICorner")
 HeaderCorner.CornerRadius = UDim.new(0,20)
 HeaderCorner.Parent = Header
 
+-- Kapat ve Küçült Butonları
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0,35,0,35)
+CloseButton.Position = UDim2.new(1,-40,0,5)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255,50,50)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255,255,255)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextSize = 18
+CloseButton.Parent = Header
+
+local CloseCorner = Instance.new("UICorner")
+CloseCorner.CornerRadius = UDim.new(0,8)
+CloseCorner.Parent = CloseButton
+
+CloseButton.MouseEnter:Connect(function()
+    TweenService:Create(CloseButton, TweenInfo.new(0.2), {BackgroundColor3=Color3.fromRGB(255,80,80)}):Play()
+end)
+CloseButton.MouseLeave:Connect(function()
+    TweenService:Create(CloseButton, TweenInfo.new(0.2), {BackgroundColor3=Color3.fromRGB(255,50,50)}):Play()
+end)
+
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame:Destroy() -- tamamen kapat
+end)
+
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Size = UDim2.new(0,35,0,35)
+MinimizeButton.Position = UDim2.new(1,-80,0,5)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(200,200,50)
+MinimizeButton.Text = "_"
+MinimizeButton.TextColor3 = Color3.fromRGB(0,0,0)
+MinimizeButton.Font = Enum.Font.GothamBold
+MinimizeButton.TextSize = 22
+MinimizeButton.Parent = Header
+
+local MinCorner = Instance.new("UICorner")
+MinCorner.CornerRadius = UDim.new(0,8)
+MinCorner.Parent = MinimizeButton
+
 -- Hoşgeldiniz bildirimi
 local Notification = Instance.new("TextLabel")
 Notification.Size = UDim2.new(0,300,0,50)
@@ -222,3 +262,34 @@ for i, scriptData in ipairs(Scripts) do
         end
     end)
 end
+
+-- Küçültme butonu (script butonlarını da gizle/göster)
+MinimizeButton.MouseButton1Click:Connect(function()
+    if MainFrame.Size.Y.Offset > 50 then
+        MainFrame.Size = UDim2.new(MainFrame.Size.X.Scale, MainFrame.Size.X.Offset, 0, 50)
+        ContentFrame.Visible = false
+        TabFrame.Visible = false
+
+        -- Script butonlarını gizle
+        for _, tab in pairs(Tabs) do
+            for _, obj in pairs(tab:GetChildren()) do
+                if obj:IsA("TextButton") then
+                    obj.Visible = false
+                end
+            end
+        end
+    else
+        MainFrame.Size = UDim2.new(0,650,0,400)
+        ContentFrame.Visible = true
+        TabFrame.Visible = true
+
+        -- Script butonlarını tekrar göster
+        for _, tab in pairs(Tabs) do
+            for _, obj in pairs(tab:GetChildren()) do
+                if obj:IsA("TextButton") then
+                    obj.Visible = true
+                end
+            end
+        end
+    end
+end)
