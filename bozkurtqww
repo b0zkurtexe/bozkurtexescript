@@ -1,1 +1,168 @@
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
 
+-- Ana ScreenGui
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.ResetOnSpawn = false
+
+-----------------------------------------------------
+-- Açılış Ekranı (Zoom + Fade)
+-----------------------------------------------------
+local IntroFrame = Instance.new("Frame")
+IntroFrame.Size = UDim2.new(0, 400, 0, 200)
+IntroFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
+IntroFrame.AnchorPoint = Vector2.new(0.5,0.5)
+IntroFrame.BackgroundColor3 = Color3.fromRGB(15,15,25)
+IntroFrame.BackgroundTransparency = 1
+IntroFrame.Parent = ScreenGui
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1,0,1,0)
+Title.BackgroundTransparency = 1
+Title.Text = "❄️ ayzxs Hizmeti ❄️"
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 48
+Title.TextTransparency = 1
+Title.Parent = IntroFrame
+
+-- Havalı animasyon
+TweenService:Create(IntroFrame, TweenInfo.new(0.8, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size=UDim2.new(0,500,0,250), BackgroundTransparency=0.15}):Play()
+TweenService:Create(Title, TweenInfo.new(1, Enum.EasingStyle.Quad), {TextTransparency=0}):Play()
+wait(2)
+TweenService:Create(IntroFrame, TweenInfo.new(0.6), {BackgroundTransparency=1, Size=UDim2.new(0,400,0,200)}):Play()
+TweenService:Create(Title, TweenInfo.new(0.6), {TextTransparency=1}):Play()
+wait(0.7)
+IntroFrame:Destroy()
+
+-----------------------------------------------------
+-- Ana GUI (Siyah Tema)
+-----------------------------------------------------
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 600, 0, 350)
+MainFrame.Position = UDim2.new(0.5, -300, 0.5, -175)
+MainFrame.BackgroundColor3 = Color3.fromRGB(15,15,20)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0,15)
+UICorner.Parent = MainFrame
+
+-- Başlık
+local Header = Instance.new("TextLabel")
+Header.Size = UDim2.new(1,0,0,50)
+Header.BackgroundColor3 = Color3.fromRGB(30,30,35)
+Header.Text = "❄️ ayzxs Menüsü ❄️"
+Header.TextColor3 = Color3.fromRGB(220,220,255)
+Header.Font = Enum.Font.GothamBold
+Header.TextSize = 22
+Header.Parent = MainFrame
+
+local HeaderCorner = Instance.new("UICorner")
+HeaderCorner.CornerRadius = UDim.new(0,12)
+HeaderCorner.Parent = Header
+
+-- Küçültme butonu
+local MinimizeBtn = Instance.new("TextButton")
+MinimizeBtn.Size = UDim2.new(0,40,0,40)
+MinimizeBtn.Position = UDim2.new(1,-50,0,5)
+MinimizeBtn.Text = "-"
+MinimizeBtn.Font = Enum.Font.GothamBold
+MinimizeBtn.TextSize = 28
+MinimizeBtn.TextColor3 = Color3.fromRGB(255,255,255)
+MinimizeBtn.BackgroundColor3 = Color3.fromRGB(50,50,60)
+MinimizeBtn.Parent = MainFrame
+
+local BtnCorner = Instance.new("UICorner")
+BtnCorner.CornerRadius = UDim.new(0,10)
+BtnCorner.Parent = MinimizeBtn
+
+-- Küçültülmüş ikon
+local MiniIcon = Instance.new("TextButton")
+MiniIcon.Size = UDim2.new(0,120,0,40)
+MiniIcon.Position = UDim2.new(0,20,0,200)
+MiniIcon.Text = "📂 ayzxs"
+MiniIcon.Font = Enum.Font.GothamBold
+MiniIcon.TextSize = 16
+MiniIcon.TextColor3 = Color3.fromRGB(255,255,255)
+MiniIcon.BackgroundColor3 = Color3.fromRGB(30,30,35)
+MiniIcon.Visible = false
+MiniIcon.Parent = ScreenGui
+
+local IconCorner = Instance.new("UICorner")
+IconCorner.CornerRadius = UDim.new(0,12)
+IconCorner.Parent = MiniIcon
+
+-- Küçültme / Açma
+MinimizeBtn.MouseButton1Click:Connect(function()
+	MainFrame.Visible = false
+	MiniIcon.Visible = true
+end)
+MiniIcon.MouseButton1Click:Connect(function()
+	MainFrame.Visible = true
+	MiniIcon.Visible = false
+end)
+
+-- Buton Container (Grid)
+local ButtonFrame = Instance.new("Frame")
+ButtonFrame.Size = UDim2.new(1,-20,1,-70)
+ButtonFrame.Position = UDim2.new(0,10,0,60)
+ButtonFrame.BackgroundTransparency = 1
+ButtonFrame.Parent = MainFrame
+
+local UIGridLayout = Instance.new("UIGridLayout")
+UIGridLayout.CellSize = UDim2.new(0, 180, 0, 50)
+UIGridLayout.CellPadding = UDim2.new(0,15,0,15)
+UIGridLayout.FillDirection = Enum.FillDirection.Horizontal
+UIGridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIGridLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIGridLayout.Parent = ButtonFrame
+
+-- Buton oluşturma fonksiyonu (hover parıltı)
+local function CreateButton(name, callback)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0,180,0,50)
+	btn.BackgroundColor3 = Color3.fromRGB(40,40,50)
+	btn.Text = name
+	btn.TextColor3 = Color3.fromRGB(230,230,255)
+	btn.Font = Enum.Font.GothamBold
+	btn.TextSize = 18
+	btn.Parent = ButtonFrame
+
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0,12)
+	corner.Parent = btn
+
+	btn.MouseEnter:Connect(function()
+		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3=Color3.fromRGB(60,60,75)}):Play()
+	end)
+	btn.MouseLeave:Connect(function()
+		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3=Color3.fromRGB(40,40,50)}):Play()
+	end)
+
+	btn.MouseButton1Click:Connect(callback)
+end
+
+-----------------------------------------------------
+-- Butonlar ve callbackler
+-----------------------------------------------------
+CreateButton("🚀 Sahte Lag", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/bozkurtlagscript/refs/heads/main/bozkurtlagscr1pt"))()
+end)
+
+CreateButton("⚡ Infinite Yield", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+CreateButton("💥 Fling Script", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/b0zkurtexe/fling/refs/heads/main/README.md"))()
+end)
+
+CreateButton("🔪 MM2 Xhub", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/wave-code-top/xhub/refs/heads/main/xhub.lua", true))()
+end)
